@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Student;
 
-class AbcController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,27 +15,10 @@ class AbcController extends Controller
      */
     public function index()
     {
-        $data= DB::select('select * from users');
-        // foreach($data as $user){
-        //     echo $user->name."<br>";
-        // }
-        // dd($users);
-        return view('abc.index', ['data'=>$data]);
-        // echo "Abccontroller index<br>";
-        // return view('abc.index');
-        // $data=['name' => 'moon',
-        //         'id'=>'1',
-        //         'chinese'=>'80',
-        //         'math'=>'91',
-        //         'english'=>'92',
-        //         ];
-        // $data['sum']=$data['chinese']+$data['math']+$data['english'];
-        // $data['avg']=$data['sum']/3;
-
-        // $data['message']='ok';
-        
-
-        // return view('abc.index', ['data'=>$data]);
+        // $data= DB::select('select * from students');
+        $data=Student::all();
+        return view('student.index', ['data'=>$data]);
+  
     }
 
     /**
@@ -44,8 +28,8 @@ class AbcController extends Controller
      */
     public function create()
     {
-        // echo "Abc controller";
-        return view('abc.create');
+     
+        return view('student.create');
     }
 
     /**
@@ -56,8 +40,18 @@ class AbcController extends Controller
      */
     public function store(Request $request)
     {
-        $input =$request->all();
-        dd($input);
+        // $input =$request->all();
+        $input =$request->except('_token');
+
+        $data =new Student;
+        $data->name=$input['name'];
+        $data->chinese=$input['chinese'];
+        $data->english=$input['english'];
+        $data->math=$input['math'];
+
+        $data->save();
+
+        return redirect()->route('students.index');
     }
 
     /**
@@ -79,7 +73,10 @@ class AbcController extends Controller
      */
     public function edit($id)
     {
-        //
+        // dd($id);
+        $data= Student::find($id);
+        // dd($data);
+        return view('student.edit',['data'=>$data]);
     }
 
     /**

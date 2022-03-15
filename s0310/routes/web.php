@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AbcController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,9 @@ use App\Http\Controllers\AbcController;
 // });
 Route::post('/abcs_get_form',[AbcController::class,'myForm'])->name('abcs.myform');
 Route::resource('abcs',AbcController::class);
+
+// Route::post('/students_get_form',[StudentController::class,'myForm'])->name('students.myform');
+Route::resource('students',StudentController::class);
 
 Route::get('/', function () {
     return view('greeting', ['name' => 'James']);
