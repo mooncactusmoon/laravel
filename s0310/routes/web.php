@@ -23,6 +23,7 @@ Route::resource('abcs',AbcController::class);
 
 // Route::post('/students_get_form',[StudentController::class,'myForm'])->name('students.myform');
 Route::resource('students',StudentController::class);
+Route::get('/students_updateAll',[StudentController::class,'updateAll'])->name('students.updateAll');
 
 Route::get('/', function () {
     return view('greeting', ['name' => 'James']);

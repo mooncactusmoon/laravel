@@ -16,7 +16,9 @@ class StudentController extends Controller
     public function index()
     {
         // $data= DB::select('select * from students');
-        $data=Student::all();
+        // $data=Student::all();
+        $data=Student::with('phones')->get();
+        dd($data[0]->phone->name);
         return view('student.index', ['data'=>$data]);
   
     }
@@ -74,8 +76,10 @@ class StudentController extends Controller
     public function edit($id)
     {
         // dd($id);
+        
         $data= Student::find($id);
-        // dd($data);
+
+        $data->save();
         return view('student.edit',['data'=>$data]);
     }
 
@@ -88,7 +92,16 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input =$request->except('_token','_method');
+        $data= Student::find($id);
+        $data->name=$input['name'];
+        $data->chinese=$input['chinese'];
+        $data->english=$input['english'];
+        $data->math=$input['math'];
+        $data->save(); //save() 是一個method(方法)
+
+        return redirect()->route('students.index');
+ 
     }
 
     /**
@@ -99,10 +112,16 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // dd('student del');
+        $data= Student::find($id);
+        $data->delete();
+        return redirect()->route('students.index');
     }
-    public function myForm(Request $request){
-        $input=$request->all();
-        dd($input);
+    public function updateAll()
+    {
+        // dd('update all');
+        Student::where('chinese','>',60) ->update(['address'=>"test"]);
+        return redirect()->route('students.index');
     }
+
 }

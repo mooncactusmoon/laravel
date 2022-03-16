@@ -10,9 +10,11 @@
 <body>
    <div class="container">
       <h3>單筆修改</h3>
-     <form action="" method="post">  {{-- 特別注意路徑 --}}
+     <form action="{{route('students.update',['student'=>$data->id])}}" method="post">  {{-- 特別注意路徑 --}}
 
       @csrf
+      @method('put')
+      {{-- <input type="hidden" name="_method" value="put"> --}}
       <table class="table table-striped">
          <thead>
             <tr>

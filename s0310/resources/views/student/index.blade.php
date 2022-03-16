@@ -11,7 +11,10 @@
 <body>
 <div class="container">
    <h2>index blade</h2>
-   <div><a href="{{route('students.create')}}">單筆新增</a></div>
+   <div>
+      <a href="{{route('students.create')}}">單筆新增</a>
+      <a href="{{route('students.updateAll')}}">全部更新</a>
+   </div>
    <table class="table table-bordered">
       <thead>
          <tr>
@@ -33,7 +36,14 @@
             <td>{{$oneData->english}}</td>
             <td>{{$oneData->math}}</td>
             <td>
-               <a href="{{route('students.edit',['student'=>$oneData->id])}}">Edit</a>
+               <a href="{{route('students.edit',['student'=>$oneData->id])}}" class="btn btn-warning btn-sm">Edit</a>
+               {{-- a tag只能傳get --}}
+               <form action="{{route('students.destroy',['student'=>$oneData->id])}}" method="post" style="display: inline">
+                  @csrf
+                  @method('delete')
+                  <input type="submit" value="del" class="btn btn-danger btn-sm">
+               </form>
+               {{-- <a href="{{route('students.destroy',['student'=>$oneData->id])}}">Del</a> --}}
             </td>
             
          </tr>
