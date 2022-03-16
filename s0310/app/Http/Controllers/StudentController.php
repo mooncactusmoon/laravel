@@ -16,9 +16,9 @@ class StudentController extends Controller
     public function index()
     {
         // $data= DB::select('select * from students');
-        // $data=Student::all();
-        $data=Student::with('phones')->get();
-        dd($data[0]->phone->name);
+        $data=Student::all();
+        // $data=Student::with('phones')->get();
+        // dd($data[0]->phone->name);
         return view('student.index', ['data'=>$data]);
   
     }
