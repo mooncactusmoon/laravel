@@ -33,6 +33,7 @@
                         <th>英文</th>
                         <th>數學</th>
                         <th>電話</th>
+                        <th>愛好</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,11 +45,12 @@
                         <td><input type="number" name="math" id="math" value="{{ $data->math }}"></td>
                         <td>
                             @if (!empty($data->phoneRelation->name))
-                                <input type="text" name="phone" id="phone" value="{{ $data->phoneRelation->name }}">
+                            <input type="text" name="phone" id="phone" value="{{ $data->phoneRelation->name }}">
                             @else
-                                <input type="text" name="phone" id="phone" value="">
+                            <input type="text" name="phone" id="phone" value="">
                             @endif
                         </td>
+                        <td><input type="text" name="love" id="love" value="{{ $data->loveString }}"></td>
                     </tr>
                     <tr>
                         <td><input type="submit" value="submit"></td>

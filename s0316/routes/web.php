@@ -29,6 +29,8 @@ Route::post('/cars_get_form', [CarController::class, 'myForm'])->name('cars.myfo
 Route::resource('cars', CarController::class);
 
 Route::get('/students_updateAll', [StudentController::class, 'updateAll'])->name('students.updateAll');
+
+Route::get('stduents_export', [StudentController::class, 'export'])->name('students.export');
 Route::resource('students', StudentController::class);
 Route::resource('phones', PhoneController::class);
 Route::resource('loves', LoveController::class);

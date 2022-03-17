@@ -30,6 +30,7 @@
                         <th>英文</th>
                         <th>數學</th>
                         <th>電話</th>
+                        <th>愛好</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +40,7 @@
                         <td><input type="number" name="english" id="english"></td>
                         <td><input type="number" name="math" id="math"></td>
                         <td><input type="text" name="phone" id="phone"></td>
+                        <td><input type="text" name="love" id="love"></td>
                     </tr>
                     <tr>
                         <td><input type="submit" value="submit"></td>

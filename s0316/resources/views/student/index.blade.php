@@ -18,6 +18,7 @@
     <div class="container-fluid">
         <h2>student index blade </h2>
         <a href="{{ route('students.create') }}">單筆新增</a>
+        <a href="{{ route('students.export') }}">輸出excel</a>
         <a href="{{ route('students.updateAll') }}">update all</a>
         <table class="table table-bordered">
             <thead>
